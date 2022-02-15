@@ -86,6 +86,7 @@ def nums():
                 db.session.commit()
                 return {
                     'code': 200,
+                    'value': new_num_value,
                     "message": f"number {new_num_value} has been created successfully."}
             else:
                 if len(check) == 2:
