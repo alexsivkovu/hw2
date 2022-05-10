@@ -14,6 +14,6 @@
 
 # диаграмма последовательностей
 
-![image](https://user-images.githubusercontent.com/71871848/154080002-c105bb75-0244-4b0d-bbc0-05847b09d098.png)
+![image](https://user-images.githubusercontent.com/71871848/167659686-5b5c46ce-836d-4d8c-b85f-c3791261d049.png)
 
 
