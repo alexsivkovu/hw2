@@ -48,7 +48,7 @@ db.create_all()
 migrate = Migrate(app, db)
 
 
-@app.route('api/v1/')
+@app.route('/api/v1/')
 def start_page() -> None:
     """
     The initial check of app
@@ -60,7 +60,7 @@ def start_page() -> None:
     }
 
 
-@app.route('api/v1/truncate')
+@app.route('/api/v1/truncate')
 def truncate() -> dict[str, Union[int, str]]:
     """
     Truncate nubers table
@@ -78,7 +78,7 @@ def truncate() -> dict[str, Union[int, str]]:
     }
 
 
-@app.route('api/v1/numbers', methods=['POST'])
+@app.route('/api/v1/numbers', methods=['POST'])
 def nums():
     if request.method == 'POST':
         if request.is_json:
