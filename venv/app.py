@@ -2,6 +2,7 @@ from config import default_db_conf
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from typing import Union
 import os
 
 app = Flask(__name__)
