@@ -4,7 +4,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import os
 
-
 # make config
 db_config = {}
 for var in ['DB_USER_NAME', 'DB_USER_PASSWORD', 'DB_NAME', 'DB_HOST']:
@@ -18,7 +17,19 @@ for var in ['DB_USER_NAME', 'DB_USER_PASSWORD', 'DB_NAME', 'DB_HOST']:
             var: default_db_conf['DEFAULT_' + var]
         })
 
+
+class Number(db.Model):
+    __tablename__ = 'Number'
+
+    id = db.Column(db.Integer, primary_key=True)
+    value = db.Column(db.Integer())
+
+    def __init__(self, value):
+        self.value = value
+
+
 app = Flask(__name__)
+
 app.config['SQLALCHEMY_DATABASE_URI'] = \
     'postgresql://%(user_name)s:%(password)s@%(host)s/%(db)s'%({
         'user_name': db_config['DB_USER_NAME'],
@@ -30,17 +41,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = \
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.secret_key = 'ea2c4ed0-721e-4e3b-985f-3397a2a67837'
 db = SQLAlchemy(app)
+db.create_all()
 migrate = Migrate(app, db)
-
-
-class Number(db.Model):
-    __tablename__ = 'Number'
-
-    id = db.Column(db.Integer, primary_key=True)
-    value = db.Column(db.Integer())
-
-    def __init__(self, value):
-        self.value = value
 
 
 @app.route('/')
