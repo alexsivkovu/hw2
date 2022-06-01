@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: back-deployment
+  labels:
+    app: back
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: back
+  template:
+    metadata:
+      labels:
+        app: back
+    spec:
+      containers:
+      - name: back
+        image: alexsivkovu/hw2:latest
+        ports:
+        - containerPort: 5000
+        env: 
+        - name: DB_HOST
+          value: "db-service"
+        - name: DB_USER_NAME
+          value: "asivkov"
+        - name: DB_USER_PASSWORD
+          value: "password"
+        - name: DB_NAME
+          value:  "dwh"          
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: back-service
+spec:
+  type: NodePort
+  selector:
+    app: back
+  ports:
+    - name: back
+      protocol: TCP
+      port: 5000
+      targetPort: 5000

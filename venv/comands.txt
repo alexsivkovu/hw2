@@ -1,0 +1,39 @@
+Получить всё
+kubectl get all
+
+Применить yaml
+kubectl apply -f db.yaml
+kubectl apply -f back.yaml
+
+Логи пода
+kubectl log pod/back-deployment-5c4648fd69-r9msl
+
+Применить ингресс
+kubectl apply -f ingress.yaml
+
+
+Сбилдить и запушить
+docker build -t hw2 .
+docker image tag hw2:latest alexsivkovu/hw2:latest
+docker image push alexsivkovu/hw2:latest
+
+Удалить под
+kubectl delete pod back-deployment-5dfcbf4b8b-vnv2t
+
+
+Удалить все поды питоновские
+kubectl delete deployment back-deployment
+
+Удалить бд
+kubectl delete deployment db-deployment
+
+Удалить сервисы
+kubectl delete service back-service
+kubectl delete service db-service
+
+
+###
+kubectl apply -f db.yaml
+kubectl apply -f back.yaml
+kubectl apply -f ingress.yaml
+kubectl get all

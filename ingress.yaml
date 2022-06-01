@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-resource-backend
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: "/"
+spec:
+  ingressClassName: haproxy
+  rules:
+  - host: sivkov.hse.dc        
+    http:
+      paths:
+      - path: "/"
+        pathType: Prefix
+        backend:
+          service:
+            name: back-service
+            port:
+              number: 5000
